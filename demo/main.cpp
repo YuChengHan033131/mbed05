@@ -10,11 +10,6 @@ void BLed(){
 void RLed(){
     R=!R;
 }
-void s3Pressed(){
-    t.reset();
-    pc.printf("%f\r\n");
-    
-}
 EventQueue lowE,highE;
 Thread lowT (osPriorityLow);
 Thread highT(osPriorityHigh);
@@ -27,7 +22,7 @@ int main(){
     highT.start(callback(&highE,&EventQueue::dispatch_forever));
     lowE.call_every(500,&BLed);
     s2.fall(highE.event(RLed));
-    s3.rise(s3Pressed);
+
 
 
 }
